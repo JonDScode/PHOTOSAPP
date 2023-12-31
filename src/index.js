@@ -3,10 +3,11 @@ const path = require('path');
 const morgan = require('morgan');
 const multer = require('multer'); 
 const { v4: uuidv4 } = require('uuid');
-
+const { format } = require('timeago.js');
 // initializations
 
 const app = express();
+require('./database');
 
 // settings
 app.set('port', process.env.PORT || 3000); 
@@ -28,11 +29,15 @@ app.use(multer({
 }).single('image'));
 
 // Global variables
+app.use((req, res, next) =>{
+    app.locals.format = format;
+    next();
+});
 
 //routes
 app.use(require('./routes/index'));
 //statics files
-
+app.use(express.static(path.join(__dirname, 'public')));
 //start the server
 app.listen(app.get('port'), () => {
     console.log(`server on port ${app.get('port')}`);
