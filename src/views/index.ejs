@@ -7,11 +7,12 @@
     <%- include('partials/head') %>
 </head>
 <body>
+    <%- include("partials/navigation")  %>
      <div class="container p-4">
         <div class="row">
             <div class="card-columns">
                 <% images.forEach(function(image){%>
-                    <div class="card animate_animated animate_fadeInDown">
+                    <div class="card animate__animated animate__fadeInUp">
                         <img src="<%= image.path %>" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><%= image.title %> </h5>
@@ -27,6 +28,5 @@
             </div>
         </div>
      </div> 
-    
 </body>
 </html>
