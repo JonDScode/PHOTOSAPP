@@ -17,8 +17,8 @@
                     <form action="/upload" method="POST" enctype="multipart/form-data">
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                              <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
-                              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile02" onchange="updateFileName(this)">
+                                <span class="custom-file-label" id="fileLabel"></span>
                             </div>
                         </div>
 
@@ -40,6 +40,19 @@
         </div>
     </div>
  </div>
+
+ <script>
+    function updateFileName(input) {
+        // Obtener el nombre del archivo seleccionado
+        const fileName = input.files[0].name;
+
+        // Obtener el elemento del span
+        const fileLabel = document.getElementById('fileLabel');
+
+        // Actualizar el texto del span con el nombre del archivo
+        fileLabel.innerText = fileName;
+    }
+</script>
     
 </body>
 </html>

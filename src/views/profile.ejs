@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,25 +9,36 @@
     <%- include("partials/head")  %>
 </head>
 <body>
+    <%- include("partials/navigation")  %>
     <div class="container p-4">
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="card animate__animated animate__fadeInUp">
                     <img src="<%= image.path %>" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title"><%= image.title %> </h5>
-                        <p class="card-text"><%= image.description %></p>
+                        <!-- Formulario de edición -->
+                        <form method="POST" action="/image/<%= image._id %>" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<%= image.title %>">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description" name="description"><%= image.description %></textarea>
+                            </div>
+                            <!-- Otros campos para editar -->
+
+                            <button type="submit" class="btn btn-primary btn-block">Update Image</button>
+                        </form>
+
                         <p class="card-text"><%= format(image.created_at) %></p>
                         <a href="/image/<%= image._id %>/delete" class="btn btn-danger btn-block">
-                             Delete Image
+                            Delete Image
                         </a>
-
                     </div>
                 </div>
             </div>
-                    
         </div>
-     </div> 
-    
+    </div> 
 </body>
 </html>
